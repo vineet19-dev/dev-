@@ -13,7 +13,7 @@ import { Log } from "./models/Log.js";
 import { ensureSystemState, evaluateSmartRules, telemetryTick } from "./services/engine.js";
 
 dotenv.config();
-
+connectDatabase();
 const app = express();
 const server = http.createServer(app);
 const __filename = fileURLToPath(import.meta.url);
