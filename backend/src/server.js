@@ -2,6 +2,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import http from "http";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import { Server } from "socket.io";
 import { connectDatabase } from "./config/db.js";
 import { createApiRouter } from "./routes/api.js";
@@ -13,6 +16,10 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDist = path.resolve(__dirname, "../../frontend/dist");
+const hasFrontendBuild = fs.existsSync(path.join(frontendDist, "index.html"));
 
 const io = new Server(server, {
   cors: {
@@ -34,7 +41,24 @@ app.get("/health", (_req, res) => {
 
 const apiRouter = createApiRouter(io);
 app.use("/api", apiRouter);
-app.use("/", apiRouter);
+
+if (hasFrontendBuild) {
+  app.use(express.static(frontendDist));
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api") || req.path === "/health") {
+      return next();
+    }
+    return res.sendFile(path.join(frontendDist, "index.html"));
+  });
+} else {
+  app.get("/", (_req, res) => {
+    res.json({
+      message: "Frontend build not found. Run frontend dev server at http://localhost:5173 or build frontend for production.",
+      frontendDevUrl: "http://localhost:5173",
+      apiBase: "/api"
+    });
+  });
+}
 
 app.use((error, _req, res, _next) => {
   console.error(error);

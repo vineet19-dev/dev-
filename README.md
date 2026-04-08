@@ -160,6 +160,8 @@ Supported simulation types:
 
 ## Run Locally
 
+Important: In development, open the frontend URL (`http://localhost:5173`) to see the interactive UI. The backend URL (`http://localhost:4000`) serves API endpoints.
+
 ### Prerequisites
 
 - Node.js 18+
@@ -186,6 +188,19 @@ npm run dev
 ```
 
 Default frontend URL: http://localhost:5173
+
+### Optional: Serve Frontend From Backend (Production-style)
+
+If you want a single URL for both API and UI:
+
+```bash
+cd frontend
+npm run build
+cd ../backend
+npm run start
+```
+
+Then open `http://localhost:4000`.
 
 ## Demo Script
 
