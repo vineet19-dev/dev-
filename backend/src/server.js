@@ -76,7 +76,7 @@ io.on("connection", async (socket) => {
 });
 
 const start = async () => {
-  await connectDatabase(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/aerobridge");
+  await connectDatabase();
   await evaluateSmartRules(io);
 
   setInterval(() => {
