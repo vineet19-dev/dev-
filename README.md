@@ -216,3 +216,34 @@ Then open `http://localhost:4000`.
 - Backend emits live events for systems, alerts, and logs
 - Alert deduplication prevents duplicate active incidents for same rule code
 - Telemetry tick runs every 5 seconds for realism
+
+## Deploy On Render
+
+This repository includes a Render blueprint file: `render.yaml`.
+
+### Option A: Blueprint Deploy (Recommended)
+
+1. Push this repository to GitHub.
+2. In Render, choose **New +** -> **Blueprint**.
+3. Select this repository and deploy.
+4. Set these environment variables when prompted:
+
+- `MONGODB_URI` = your MongoDB Atlas connection string
+- `CLIENT_ORIGIN` = your final Render URL (example: `https://aerobridge-command-center.onrender.com`)
+
+### Option B: Manual Web Service
+
+Use the following values in Render:
+
+- Runtime: `Node`
+- Build Command: `cd frontend && npm install && npm run build && cd ../backend && npm install`
+- Start Command: `cd backend && npm run start`
+
+Environment variables:
+
+- `NODE_ENV=production`
+- `PORT=4000`
+- `MONGODB_URI=<your atlas uri>`
+- `CLIENT_ORIGIN=<your render app url>`
+
+After deployment, open your Render URL to view the interactive dashboard.

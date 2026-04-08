@@ -1,0 +1,36 @@
+[33mcommit 7c4204d0800f3fcb88991a72dc68950a6700e2de[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Vineet Kumar <vineet19eee25@bpitindia.edu.in>
+Date:   Wed Apr 8 02:51:11 2026 +0000
+
+    Build AeroBridge full-stack real-time command center dashboard
+
+A	.gitignore
+M	README.md
+A	backend/.env.example
+A	backend/package.json
+A	backend/src/config/db.js
+A	backend/src/models/Alert.js
+A	backend/src/models/Log.js
+A	backend/src/models/SystemState.js
+A	backend/src/routes/api.js
+A	backend/src/server.js
+A	backend/src/services/engine.js
+A	frontend/.env.example
+A	frontend/index.html
+A	frontend/package.json
+A	frontend/postcss.config.js
+A	frontend/src/App.jsx
+A	frontend/src/components/AlertPanel.jsx
+A	frontend/src/components/ControlPanel.jsx
+A	frontend/src/components/DigitalTwin.jsx
+A	frontend/src/components/HeaderBar.jsx
+A	frontend/src/components/IncidentTimeline.jsx
+A	frontend/src/components/KpiTrends.jsx
+A	frontend/src/components/LogsTable.jsx
+A	frontend/src/components/SystemStatusCards.jsx
+A	frontend/src/hooks/useRealtime.js
+A	frontend/src/lib/api.js
+A	frontend/src/main.jsx
+A	frontend/src/styles/globals.css
+A	frontend/tailwind.config.js
+A	frontend/vite.config.js

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: aerobridge-command-center
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
+    startCommand: cd backend && npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: MONGODB_URI
+        sync: false
